@@ -1,0 +1,24 @@
+
+services:
+  frontend:
+    build:
+      context: ../../
+      dockerfile: build/docker/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    networks:
+      - frontend_network
+
+networks:
+  frontend_network:
+    driver: bridge
