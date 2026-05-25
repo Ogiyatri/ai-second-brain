@@ -13,7 +13,7 @@ import { memoryStorage } from 'multer';
 import { DocumentsService } from '../application/documents.service';
 import { JwtAuthGuard } from '../../auth/interface/auth.guard';
 import { CurrentUser } from '../../auth/interface/decorators/current-user.decorator';
-import { ApiTags, ApiBearerAuth, ApiOperation, ApiConsumes } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 
 @ApiTags('Documents')
 @ApiBearerAuth('JWT')

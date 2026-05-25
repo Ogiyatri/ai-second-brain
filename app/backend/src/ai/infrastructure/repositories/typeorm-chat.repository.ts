@@ -13,16 +13,29 @@ export class TypeOrmChatRepository {
     private readonly messageRepo: Repository<ChatMessageTypeOrmEntity>,
   ) {}
 
-  async createSession(userId: string, title = 'New Chat'): Promise<ChatSessionTypeOrmEntity> {
-    const session = this.sessionRepo.create({ id: crypto.randomUUID(), userId, title });
+  async createSession(
+    userId: string,
+    title = 'New Chat',
+  ): Promise<ChatSessionTypeOrmEntity> {
+    const session = this.sessionRepo.create({
+      id: crypto.randomUUID(),
+      userId,
+      title,
+    });
     return this.sessionRepo.save(session);
   }
 
   async listSessions(userId: string): Promise<ChatSessionTypeOrmEntity[]> {
-    return this.sessionRepo.find({ where: { userId }, order: { createdAt: 'DESC' } });
+    return this.sessionRepo.find({
+      where: { userId },
+      order: { createdAt: 'DESC' },
+    });
   }
 
-  async getSession(id: string, userId: string): Promise<ChatSessionTypeOrmEntity | null> {
+  async getSession(
+    id: string,
+    userId: string,
+  ): Promise<ChatSessionTypeOrmEntity | null> {
     return this.sessionRepo.findOne({ where: { id, userId } });
   }
 
@@ -37,7 +50,10 @@ export class TypeOrmChatRepository {
     return this.messageRepo.save(msg);
   }
 
-  async getMessages(sessionId: string, userId: string): Promise<ChatMessageTypeOrmEntity[]> {
+  async getMessages(
+    sessionId: string,
+    userId: string,
+  ): Promise<ChatMessageTypeOrmEntity[]> {
     return this.messageRepo.find({
       where: { sessionId, userId },
       order: { createdAt: 'ASC' },

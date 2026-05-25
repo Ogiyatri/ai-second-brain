@@ -35,9 +35,14 @@ async function bootstrap() {
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('AI Second Brain API')
-    .setDescription('REST API for AI Second Brain — documents, chat, and AI generation')
+    .setDescription(
+      'REST API for AI Second Brain — documents, chat, and AI generation',
+    )
     .setVersion('1.0')
-    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' }, 'JWT')
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+      'JWT',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);

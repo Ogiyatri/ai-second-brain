@@ -49,7 +49,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: AuthSocket,
     @MessageBody() data: { session_id: string },
   ) {
-    client.join(`session:${data.session_id}`);
+    void client.join(`session:${data.session_id}`);
   }
 
   @SubscribeMessage('chat')

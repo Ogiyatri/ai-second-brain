@@ -11,7 +11,7 @@ export class EmbeddingService {
     @InjectDataSource() private readonly dataSource: DataSource,
   ) {}
 
-  async embedChunks(
+  embedChunks(
     documentId: string,
     chunks: DocumentChunkEntity[],
   ): Promise<void> {
@@ -28,14 +28,17 @@ export class EmbeddingService {
     //     [vectorStr, chunk.id],
     //   );
     // }
-    console.log(`[EmbeddingService] Skipped embedding for ${chunks.length} chunks — OpenAI tidak aktif`);
+    console.log(
+      `[EmbeddingService] Skipped embedding for ${chunks.length} chunks — OpenAI tidak aktif`,
+    );
+    return Promise.resolve();
   }
 
-  async similaritySearch(
+  similaritySearch(
     queryText: string,
     userId: string,
     documentIds: string[],
-    topK = 5,
+    _topK = 5,
   ): Promise<
     { id: string; documentId: string; content: string; chunkIndex: number }[]
   > {
@@ -56,6 +59,6 @@ export class EmbeddingService {
     //   [userId, vectorStr, ...documentIds],
     // );
     // return rows;
-    return [];
+    return Promise.resolve([]);
   }
 }

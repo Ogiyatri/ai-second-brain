@@ -33,7 +33,7 @@ export class TypeOrmDocumentRepository implements IDocumentRepository {
       where: { userId },
       order: { createdAt: 'DESC' },
     });
-    return orms.map(DocumentMapper.toDomain);
+    return orms.map((orm) => DocumentMapper.toDomain(orm));
   }
 
   async delete(id: string): Promise<void> {

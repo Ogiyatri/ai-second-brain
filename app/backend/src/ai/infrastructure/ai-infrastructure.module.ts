@@ -8,8 +8,23 @@ import { EmbeddingService } from './openai/embedding.service';
 import { CompletionService } from './openai/completion.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ChatSessionTypeOrmEntity, ChatMessageTypeOrmEntity])],
-  providers: [OpenAIClient, EmbeddingService, CompletionService, TypeOrmChatRepository],
-  exports: [OpenAIClient, EmbeddingService, CompletionService, TypeOrmChatRepository],
+  imports: [
+    TypeOrmModule.forFeature([
+      ChatSessionTypeOrmEntity,
+      ChatMessageTypeOrmEntity,
+    ]),
+  ],
+  providers: [
+    OpenAIClient,
+    EmbeddingService,
+    CompletionService,
+    TypeOrmChatRepository,
+  ],
+  exports: [
+    OpenAIClient,
+    EmbeddingService,
+    CompletionService,
+    TypeOrmChatRepository,
+  ],
 })
 export class AiInfrastructureModule {}

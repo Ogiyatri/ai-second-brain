@@ -6,7 +6,10 @@ export class GenerateDocumentDto {
   @IsString()
   prompt: string;
 
-  @ApiProperty({ example: 'ringkasan', enum: ['ringkasan', 'laporan', 'surat', 'proposal'] })
+  @ApiProperty({
+    example: 'ringkasan',
+    enum: ['ringkasan', 'laporan', 'surat', 'proposal'],
+  })
   @IsIn(['ringkasan', 'laporan', 'surat', 'proposal'])
   type: string;
 

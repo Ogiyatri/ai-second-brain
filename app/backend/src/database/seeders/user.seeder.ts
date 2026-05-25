@@ -1,12 +1,11 @@
 import { DataSource } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 import { UserTypeOrmEntity } from 'src/auth/infrastructure/entities/user.typeorm-entity';
 
 export class UserSeeder {
   constructor(private dataSource: DataSource) {}
 
   async run(): Promise<void> {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const bcrypt = require('bcrypt');
     const repo = this.dataSource.getRepository(UserTypeOrmEntity);
 
     const users = [
