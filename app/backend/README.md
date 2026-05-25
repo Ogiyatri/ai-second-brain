@@ -1,6 +1,6 @@
 # AI Second Brain — Backend
 
-NestJS 11 REST API dengan arsitektur DDD. PostgreSQL + pgvector untuk vector similarity search, MinIO untuk object storage, OpenAI untuk embeddings dan chat.
+NestJS 11 REST API dengan arsitektur DDD. PostgreSQL + pgvector untuk vector similarity search, MinIO untuk object storage, OpenAI untuk embeddings dan chat. 
 
 ## Menjalankan dengan Docker
 
