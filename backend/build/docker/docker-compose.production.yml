@@ -1,0 +1,20 @@
+
+services:
+  backend:
+    build:
+      context: ../../
+      dockerfile: build/docker/Dockerfile
+    environment:
+      NODE_ENV: production
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+
+  db:
+    restart: always
+
+  minio:
+    restart: always

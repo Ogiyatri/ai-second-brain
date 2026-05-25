@@ -1,0 +1,12 @@
+
+services:
+  backend:
+    build:
+      context: ../../
+      dockerfile: build/docker/Dockerfile.dev
+    volumes:
+      - ../../src:/app/src
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+    command: yarn start:dev
