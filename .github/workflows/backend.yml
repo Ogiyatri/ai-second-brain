@@ -9,7 +9,7 @@ on:
       - "fix/**"
       - "hotfix/**"
     paths:
-      - "backend/**"
+      - "app/backend/**"
       - ".github/workflows/backend.yml"
     tags:
       - "v*"
@@ -18,7 +18,7 @@ on:
       - main
       - develop
     paths:
-      - "backend/**"
+      - "app/backend/**"
 
 jobs:
   lint:
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend
+        working-directory: app/backend
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: "20"
           cache: "yarn"
-          cache-dependency-path: backend/yarn.lock
+          cache-dependency-path: app/backend/yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend
+        working-directory: app/backend
 
     services:
       postgres:
@@ -86,7 +86,7 @@ jobs:
         with:
           node-version: "20"
           cache: "yarn"
-          cache-dependency-path: backend/yarn.lock
+          cache-dependency-path: app/backend/yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -99,7 +99,7 @@ jobs:
         if: always()
         with:
           name: backend-coverage
-          path: backend/coverage/
+          path: app/backend/coverage/
 
   build:
     name: Build
@@ -107,7 +107,7 @@ jobs:
     needs: [lint, test]
     defaults:
       run:
-        working-directory: backend
+        working-directory: app/backend
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -117,7 +117,7 @@ jobs:
         with:
           node-version: "20"
           cache: "yarn"
-          cache-dependency-path: backend/yarn.lock
+          cache-dependency-path: app/backend/yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -129,7 +129,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: backend-dist
-          path: backend/dist/
+          path: app/backend/dist/
 
   docker:
     name: Docker Build & Push
@@ -167,8 +167,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: backend
-          file: backend/build/docker/Dockerfile
+          context: app/backend
+          file: app/backend/build/docker/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
